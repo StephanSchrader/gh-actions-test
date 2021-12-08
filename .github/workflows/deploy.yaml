@@ -33,7 +33,7 @@ jobs:
           echo "::set-output name=version::$(echo ${GITHUB_REF#refs/*/} | cut -d_ -f1)"
           echo "::set-output name=function::$(echo ${GITHUB_REF#refs/*/} | cut -d_ -f2)"
       - name: Set Version from Tag
-        if: ${{ env.GCP_FUNCTION == 'main' }}
+        if: ${{ env.GCP_FUNCTION == 'main' || env.GCP_FUNCTION == '' }}
         run: echo ''
         env:
           RELEASE_VERSION: ${{ steps.vars.outputs.version }}
