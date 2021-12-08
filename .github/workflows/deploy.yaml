@@ -37,4 +37,4 @@ jobs:
           GCP_FUNCTION: ${{ steps.vars.outputs.function }}
         run: |
           echo "RELEASE_VERSION: ${{ env.RELEASE_VERSION }}"
-          echo "RELEASE_FUNCTION: ${{ env.GCP_FUNCTION }}"
+          echo "RELEASE_FUNCTION: ${{ env.GCP_FUNCTION }}" 
