@@ -43,5 +43,8 @@ jobs:
           GCP_FUNCTION: ${{ steps.vars.outputs.function }}
       - name: Check output
         run: |
+          ${{ steps.vars.outputs.function == 'main' || steps.vars.outputs.function == '' }}
+          ${{ steps.vars.outputs.function }}
+          
           echo "RELEASE_VERSION: ${{ env.RELEASE_VERSION }}"
           echo "RELEASE_FUNCTION: ${{ env.GCP_FUNCTION }}"
