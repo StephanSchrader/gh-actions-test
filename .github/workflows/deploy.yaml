@@ -18,11 +18,14 @@ jobs:
         id: vars
         run: |
           echo ::set-output name=tag::${GITHUB_REF#refs/*/}
-          echo ::set-output name=function::${cut -d'_' -f2 <<<"$RELEASE_VERSION"}
       - name: Check output
         env:
           RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
         run: |
           echo $RELEASE_VERSION
           echo ${{ steps.vars.outputs.tag }}
-          echo ${{ steps.vars.outputs.function }}
+      - id: get-id
+        run: |
+          id=$(echo ${{steps.vars.outputs.tag}} | cut -d- -f2)
+          echo "::set-output name=id::$id"
+      - run: echo "${{steps.get-id.outputs.id}}"
