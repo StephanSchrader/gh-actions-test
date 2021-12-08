@@ -19,7 +19,7 @@ on:
 
 env:
   GCP_FUNCTION: ${{ github.event.inputs.function }}
-  IS_TAG: ${{ GITHUB_REF_TYPE }}
+  IS_TAG: ${{ env.GITHUB_REF_TYPE }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
