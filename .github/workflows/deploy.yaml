@@ -43,5 +43,7 @@ jobs:
           GCP_FUNCTION: ${{ github.event.inputs.function }}
       - name: Check output
         run: |
-          echo "RELEASE_VERSION: ${ env.RELEASE_VERSION }"
-          echo "RELEASE_FUNCTION: ${ env.GCP_FUNCTION }"
+          ${{ env.GCP_FUNCTION }}
+
+          echo "RELEASE_VERSION: ${ RELEASE_VERSION }"
+          echo "RELEASE_FUNCTION: ${ GCP_FUNCTION }"
