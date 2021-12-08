@@ -37,4 +37,4 @@ jobs:
           GCP_FUNCTION: ${{ steps.vars.outputs.function }}
       - name: Check output
         run: |
-          echo "RELEASE_FUNCTION: ${{ steps.vars.outputs.function }}"
+          echo "RELEASE_FUNCTION: ${{ github.event.inputs.function || steps.vars.outputs.function }}"
