@@ -26,7 +26,7 @@ jobs:
         id: vars
         run: |
           echo ::set-output name=tag::${GITHUB_REF#refs/*/}
-          func=$(echo ${{steps.vars.outputs.tag}} | cut -d_ -f2)
+          func=$(echo ${GITHUB_REF#refs/*/} | cut -d_ -f2)
           echo "func: $func"
           echo "::set-output name=function::$func"
       - name: Check output
