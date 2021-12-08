@@ -18,7 +18,7 @@ on:
         required: false
 
 env:
-  GCP_FUNCTION: ${{ github.event.inputs.function }}
+
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -38,6 +38,12 @@ jobs:
         env:
           RELEASE_VERSION: ${{ steps.vars.outputs.version }}
           GCP_FUNCTION: ${{ steps.vars.outputs.function }}
+      - name: Set Version from Input
+        if: ${{ github.event.inputs.function != '' }}
+        run: echo ''
+        env:
+          RELEASE_VERSION: ${{ steps.vars.outputs.version }}
+          GCP_FUNCTION: ${{ github.event.inputs.function }}
       - name: Check output
         run: |
           echo "RELEASE_VERSION: ${{ env.RELEASE_VERSION }}"
