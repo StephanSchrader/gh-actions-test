@@ -11,7 +11,7 @@ on:
       function:
         description: 'Function name to be deploy'
         required: true
-        default: 'podio-mongodb-extractor'
+        default: 'hello-world'
       version:
         description: 'Version of function'
         required: false
@@ -26,14 +26,11 @@ jobs:
         id: vars
         run: |
           echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+          echo ::set-output name=function::$(echo ${{steps.vars.outputs.tag}} | cut -d_ -f2)
       - name: Check output
         env:
           RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
+          RELEASE_FUNC: ${{ steps.vars.outputs.function }}
         run: |
           echo ${{ env.RELEASE_VERSION }}
-          echo ${{ steps.vars.outputs.tag }}
-      - id: get-id
-        run: |
-          id=$(echo ${{steps.vars.outputs.tag}} | cut -d_ -f2)
-          echo "::set-output name=id::$id"
-      - run: echo "${{steps.get-id.outputs.id}}"
+          echo ${{ env.RELEASE_FUNC }}
