@@ -7,6 +7,14 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      function:
+        description: 'Function name to be deploy'
+        required: true
+        default: 'podio-mongodb-extractor'
+      version:
+        description: 'Version of function'
+        required: false
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -22,7 +30,7 @@ jobs:
         env:
           RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
         run: |
-          echo $RELEASE_VERSION
+          echo ${{ env.RELEASE_VERSION }}
           echo ${{ steps.vars.outputs.tag }}
       - id: get-id
         run: |
