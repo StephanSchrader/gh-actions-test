@@ -45,6 +45,7 @@ jobs:
         run: |
           ${{ steps.vars.outputs.function == 'main' || steps.vars.outputs.function == '' }}
           ${{ steps.vars.outputs.function }}
-          
+          ${{ github.event.inputs.function }}
+
           echo "RELEASE_VERSION: ${{ env.RELEASE_VERSION }}"
           echo "RELEASE_FUNCTION: ${{ env.GCP_FUNCTION }}"
