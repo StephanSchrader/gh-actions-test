@@ -30,7 +30,7 @@ jobs:
       - name: Parse Git Tag
         id: vars
         run: |
-          ${{ env.GITHUB_REF_TYPE == 'tag' }}
+          ${{ env.GITHUB_REF_TYPE == "tag" }}
           echo "REF_TYPE: $GITHUB_REF_TYPE"
           echo "::set-output name=version::$(echo ${GITHUB_REF#refs/*/} | cut -d_ -f1)"
           echo "::set-output name=function::$(echo ${GITHUB_REF#refs/*/} | cut -d_ -f2)"
