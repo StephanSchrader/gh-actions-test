@@ -26,15 +26,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
       - name: Set output
+        if: ${{ GCP_FUNCTION == '' }}
         id: vars
         run: |
           echo "::set-output name=version::$(echo ${GITHUB_REF#refs/*/} | cut -d_ -f1)"
           echo "::set-output name=function::$(echo ${GITHUB_REF#refs/*/} | cut -d_ -f2)"
-      - name: Check output
         env:
           RELEASE_VERSION: ${{ steps.vars.outputs.version }}
           GCP_FUNCTION: ${{ steps.vars.outputs.function }}
+      - name: Check output
         run: |
           echo "RELEASE_VERSION: ${{ env.RELEASE_VERSION }}"
-          echo "RELEASE_FUNCTION: ${{ env.GCP_FUNCTION }}" 
+          echo "RELEASE_FUNCTION: ${{ env.GCP_FUNCTION }}"
