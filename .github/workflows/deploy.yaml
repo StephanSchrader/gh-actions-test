@@ -26,9 +26,7 @@ jobs:
         id: vars
         run: |
           echo ::set-output name=tag::${GITHUB_REF#refs/*/}
-          func=$(echo ${GITHUB_REF#refs/*/} | cut -d_ -f2)
-          echo "::set-output name=function::$func"
-
+          echo "::set-output name=function::$(echo ${GITHUB_REF#refs/*/} | cut -d_ -f2)"
           echo "::set-output name=version::$(echo ${GITHUB_REF#refs/*/} | cut -d_ -f1)"
       - name: Check output
         env:
