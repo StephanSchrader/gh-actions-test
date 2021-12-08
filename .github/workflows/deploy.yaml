@@ -45,5 +45,4 @@ jobs:
         run: |
           ${{ env.GCP_FUNCTION }}
 
-          echo "RELEASE_VERSION: ${ RELEASE_VERSION }"
           echo "RELEASE_FUNCTION: ${ GCP_FUNCTION }"
