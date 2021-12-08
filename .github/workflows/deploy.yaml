@@ -23,4 +23,5 @@ jobs:
         run: |
           echo $RELEASE_VERSION
           echo ${{ steps.vars.outputs.tag }}
-          echo (${$RELEASE_VERSION//;/ })[1]
+          A="$(cut -d'_' -f2 <<<"$RELEASE_VERSION")"
+          echo ${{A}}
