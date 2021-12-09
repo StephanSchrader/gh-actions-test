@@ -29,6 +29,10 @@ jobs:
         run: |
           echo "::set-output name=version::$(echo ${GITHUB_REF#refs/*/} | cut -d_ -f1)"
           echo "::set-output name=function::$(echo ${GITHUB_REF#refs/*/} | cut -d_ -f2)"
+      - name: Apply Function Name
+        run: echo ''
+        env:
+          THE_FUNCTION: ${{ github.event.inputs.function || steps.vars.outputs.function }}"
       - name: Set Version from Tag
         if: ${{ github.event.inputs.function == '' }}
         run: echo ''
@@ -38,3 +42,4 @@ jobs:
       - name: Check output
         run: |
           echo "RELEASE_FUNCTION: ${{ github.event.inputs.function || steps.vars.outputs.function }}"
+          echo "THE_FUNCTION: ${{ env.THE_FUNCTION }}"
