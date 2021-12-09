@@ -42,4 +42,4 @@ jobs:
       - name: Check output
         run: |
           echo "RELEASE_FUNCTION: ${{ github.event.inputs.function || steps.vars.outputs.function }}"
-          echo "THE_FUNCTION: ${ THE_FUNCTION }"
+          echo "THE_FUNCTION: ${ env.THE_FUNCTION }"
