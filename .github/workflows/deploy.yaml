@@ -18,7 +18,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build:
+  checkout:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -37,3 +37,17 @@ jobs:
         run: |
           echo "RELEASE_FUNCTION: ${{ github.event.inputs.function || steps.vars.outputs.function }}"
           echo "THE_FUNCTION: ${{ env.THE_FUNCTION }}"
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup NodeJS
+        with:
+          node-version: '14'
+          cache: 'npm'
+
+      - name: Build
+        run: |-
+          echo "THE_FUNCTION: ${{ env.THE_FUNCTION }}"
+          npm install
+          npm run build
+
